@@ -1,0 +1,15 @@
+venv/
+bug-summarizer/venv/
+__pycache__/
+*.pyc
+.env
+# Ignore large model files and checkpoints to avoid GitHub limits
+bug-summarizer/model/codebert_bug_model/
+bug-summarizer/notebook/results/
+*.bin
+*.safetensors
+
+Report/
+New Text Document.txt
+bug-summarizer/test_output.docx
+bug-summarizer/build_report.py

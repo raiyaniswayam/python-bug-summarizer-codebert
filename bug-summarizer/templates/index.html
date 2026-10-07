@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Bug Summarizer — CodeBERT</title>
+    <meta name="description" content="Analyze Python code for bugs using a fine-tuned CodeBERT model. Get instant bug summaries with confidence scores.">
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- Google Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🐛</span>
+                <div>
+                    <h1>Python Bug Summarizer</h1>
+                    <p class="subtitle">Powered by CodeBERT Transformers</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Code Input Section -->
+            <section class="input-section">
+                <div class="section-header">
+                    <h2>Paste your Python code</h2>
+                    <span class="char-count" id="charCount">0 / 10,000</span>
+                </div>
+                <textarea
+                    id="codeInput"
+                    class="code-input"
+                    placeholder="# Paste your Python code here...&#10;&#10;def example(numbers):&#10;    total = 0&#10;    for i in range(len(numbers) + 1):&#10;        total += numbers[i]&#10;    return total"
+                    spellcheck="false"
+                    autocomplete="off"
+                ></textarea>
+                <div class="actions">
+                    <button id="analyzeBtn" class="btn btn-primary" onclick="analyzeCode()">
+                        <span class="btn-text">🔍 Analyze Code</span>
+                        <span class="btn-loading" style="display:none;">
+                            <span class="spinner"></span> Analyzing...
+                        </span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="clearAll()">Clear</button>
+                </div>
+            </section>
+
+            <!-- Example Buttons -->
+            <section class="examples-section">
+                <h3>Try an example:</h3>
+                <div class="example-buttons">
+                    <button class="btn btn-example" onclick="loadExample(0)">Off-by-one Error</button>
+                    <button class="btn btn-example" onclick="loadExample(1)">Missing Return</button>
+                    <button class="btn btn-example" onclick="loadExample(2)">Undefined Variable</button>
+                    <button class="btn btn-example" onclick="loadExample(3)">Wrong Operator</button>
+                    <button class="btn btn-example" onclick="loadExample(4)">Clean Code</button>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section id="resultSection" class="result-section" style="display:none;">
+                <!-- Summary Header -->
+                <div class="result-header" id="resultHeader">
+                    <h2 id="resultTitle">Analysis Result</h2>
+                    <span class="issue-count-badge" id="issueCountBadge"></span>
+                </div>
+
+                <!-- Summary Text -->
+                <div class="summary-card" id="summaryCard">
+                    <pre class="summary-text" id="summaryText"></pre>
+                </div>
+
+                <!-- Individual Issue Cards -->
+                <div class="issues-list" id="issuesList"></div>
+
+                <!-- Notes (warnings) -->
+                <div class="notes-section" id="notesSection" style="display:none;">
+                    <h3 class="notes-title">📝 Notes</h3>
+                    <ul class="notes-list" id="notesList"></ul>
+                </div>
+
+                <!-- ML Top-3 Predictions -->
+                <div class="ml-section" id="mlSection" style="display:none;">
+                    <h3 class="ml-title">🤖 CodeBERT Predictions</h3>
+                    <ul class="top3-list" id="top3List"></ul>
+                </div>
+            </section>
+
+            <!-- Error Section -->
+            <section id="errorSection" class="error-section" style="display:none;">
+                <div class="error-card">
+                    <span class="error-icon">⚠️</span>
+                    <p id="errorText"></p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>NLP Assignment — Semester 7 · Built with CodeBERT + Flask</p>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
